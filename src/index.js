@@ -1,15 +1,15 @@
 // require('dotenv').config({path: `./env});
 import dotenv from "dotenv";
 import connectDB from "./db/db.js";
+import { app } from "./app.js";
 
-dotenv.config({ 
-    path: `./.env` 
-});
+dotenv.config({ path: "./.env" });
 
-// import mongoose from "mongoose";
-// import { DB_NAME } from "./constants";
-
-
+// basic sanity check
+if (!process.env.MONGO_URL) {
+  console.error("MONGO_URL is not set in .env");
+  process.exit(1);
+}
 
 connectDB()
   .then(() => {
@@ -19,11 +19,8 @@ connectDB()
   })
   .catch((err) => {
     console.log("Error in DB connection !!!!", err);
-    throw err;
+    process.exit(1);
   });
-
-
-
 
 
 // function connectDB(){}
