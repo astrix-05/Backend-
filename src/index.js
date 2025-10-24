@@ -5,6 +5,14 @@ import { app } from "./app.js";
 
 dotenv.config({ path: "./.env" });
 
+console.log(
+  "Cloudinary ENV TEST:",
+  process.env.CLOUDINARY_CLOUD_NAME,
+  process.env.CLOUDINARY_API_KEY,
+  process.env.CLOUDINARY_API_SECRET
+);
+
+
 // basic sanity check
 if (!process.env.MONGO_URL) {
   console.error("MONGO_URL is not set in .env");
